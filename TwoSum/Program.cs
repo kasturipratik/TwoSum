@@ -18,16 +18,15 @@ namespace TwoSum
         // one pass dictionary
         public static int[] TwoSum(int[] nums, int target)
             {
-                Dictionary<int, int> d = new Dictionary<int, int>();
+                HashSet<int> d = new HashSet<int>();
                 for (int i = 0; i < nums.Length; i++)
                 {
                     int c = target - nums[i];
-                    int a;
-                    if (d.TryGetValue(c, out a))
+                    if (d.Contains(c))
                     {
-                        return new int[] { a, i };
+                        return new int[] { Array.IndexOf(nums, c), i };
                     }
-                    d.Add(nums[i], i);
+                    d.Add(nums[i]);
                 }
                 return null;
         }
