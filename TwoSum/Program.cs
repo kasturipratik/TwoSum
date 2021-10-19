@@ -7,12 +7,15 @@ namespace TwoSum
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
             int[] nums = { 2, 7, 11, 15 };
             int target = 9;
-            Console.WriteLine("Array : ");
-            Console.WriteLine("[{0}]"+ " Target:" + target, string.Join(", ", TwoSum(nums, target)));
+            
+            Console.WriteLine("One pass Dictionary solution: [{0}]"+ " Target:" + target, string.Join(", ", TwoSum(nums, target)));
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("Brute Force solution: [{0}]" + " Target:" + target, string.Join(", ", BruteForceTwoSum(nums, target)));
         }
+        // one pass dictionary
         public static int[] TwoSum(int[] nums, int target)
             {
                 Dictionary<int, int> d = new Dictionary<int, int>();
@@ -28,6 +31,23 @@ namespace TwoSum
                 }
                 return null;
         }
-        
+
+        // brute force solution
+        public static int[] BruteForceTwoSum(int[] nums, int target)
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (nums[j] == target - nums[i])
+                    {
+                        return new int[] { i, j };
+                    }
+                }
+            }
+            // In case there is no solution, we'll just return null
+            return null;
+        }
+
     }
 }
